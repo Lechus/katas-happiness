@@ -6,11 +6,15 @@ namespace InventoryManagement.Core.UnitTests
     public class InventoryManagerTests
     {     
         [Test]
-        public void Test1()
+        public void GivenSoap_ReturnsNotChangedSoap()
         {
             var sut = new InventoryManager();
 
-            Assert.Pass();
+            var listOfItems = "Soap 2 2";
+
+            var result = sut.UpdateInventory(listOfItems);
+
+            Assert.That(result, Is.EqualTo(listOfItems));
         }
     }
 }
