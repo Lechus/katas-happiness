@@ -11,5 +11,15 @@ namespace Checkout.Tests
 
             Assert.That(sut, Is.Not.Null);
         }
+
+        [Test]
+        public void CanAddAnItemToCheckoutBasket()
+        {
+            var sut = new CheckoutService();
+
+            sut.Add("A");
+
+            Assert.Pass();
+        }
     }
 }
