@@ -22,14 +22,7 @@ namespace Checkout
 
         public decimal GetTotal()
         {
-            var total = 0m;
-
-            foreach (var sku in _basketItems)
-            {
-                total += _itemPrices.Single(x => x.Sku == sku).UnitPrice;
-            }
-
-            return total;
+            return _basketItems.Sum(sku => _itemPrices.Single(x => x.Sku == sku).UnitPrice);
         }
     }
 }
