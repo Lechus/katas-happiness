@@ -62,5 +62,23 @@ namespace Checkout.Tests
 
             return sut.GetTotal();
         }
+
+        [TestCase("B B B", ExpectedResult = 40)]
+        [TestCase("B B B B", ExpectedResult = 55)]
+        [TestCase("B B B B B B", ExpectedResult = 80)]
+        public decimal AddedMultiple3OfItemsB_ThenPromotion3For40ShouldBeApplied(string skuList)
+        {
+            var itemPromotion3For40 = new ItemPromotion(skuList.Substring(0,1), 3, 40);
+            _itemPromotions.Add(itemPromotion3For40);
+            var sut = new CheckoutService(_itemPrices, _itemPromotions);
+
+            var skus = skuList.Split(" ");
+            foreach (var sku in skus)
+            {
+                sut.Add(sku);
+            }
+
+            return sut.GetTotal();
+        }
     }
 }
