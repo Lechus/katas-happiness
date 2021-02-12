@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Checkout
 {
     public class CheckoutService
     {
+        private readonly IList<ItemPrice> _itemPrices;
+
         private IList<string> _basketItems;
 
-        public CheckoutService()
+        public CheckoutService(IList<ItemPrice> itemPrices)
         {
+            _itemPrices = itemPrices;
             _basketItems = new List<string>();
         }
 
@@ -20,11 +24,11 @@ namespace Checkout
         {
             if (_basketItems[0].Equals("A"))
             {
-                return 10m;
+                return _itemPrices.Single(x=>x.Sku == "A").UnitPrice;
             }
             else
             {
-                return 15m;
+                return _itemPrices.Single(x=>x.Sku == "B").UnitPrice;
             }
         }
     }
