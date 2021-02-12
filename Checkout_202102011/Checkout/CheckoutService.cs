@@ -18,7 +18,14 @@ namespace Checkout
 
         public decimal GetTotal()
         {
-            return 10m;
+            if (_basketItems[0].Equals("A"))
+            {
+                return 10m;
+            }
+            else
+            {
+                return 15m;
+            }
         }
     }
 }

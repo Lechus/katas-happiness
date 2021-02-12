@@ -25,5 +25,17 @@ namespace Checkout.Tests
 
             Assert.That(total, Is.EqualTo(10m));
         }
+
+        [Test]
+        public void AddedItemB_ThenTotalIs15()
+        {
+            var sut = new CheckoutService();
+
+            sut.Add("B");
+
+            decimal total = sut.GetTotal();
+
+            Assert.That(total, Is.EqualTo(15m));
+        }
     }
 }
