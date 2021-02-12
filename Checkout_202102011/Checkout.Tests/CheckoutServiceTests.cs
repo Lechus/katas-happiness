@@ -9,6 +9,8 @@ namespace Checkout.Tests
     {
         private IList<ItemPrice> _itemPrices;
 
+        private IList<IItemPromotion> _itemPromotions;
+
         [SetUp]
         public void Init()
         {
@@ -19,12 +21,14 @@ namespace Checkout.Tests
                  new ItemPrice("C", 40m),
                  new ItemPrice("D", 55m)
              };
+
+           _itemPromotions = new List<IItemPromotion>();
         }
 
         [Test]
         public void CanUseCheckoutServiceTest()
         {
-            var sut = new CheckoutService(_itemPrices);
+            var sut = new CheckoutService(_itemPrices, _itemPromotions);
 
             Assert.That(sut, Is.Not.Null);
         }
@@ -35,7 +39,7 @@ namespace Checkout.Tests
         [TestCase("D", ExpectedResult = 55)]
         public decimal AddedSingleItem_ThenTotalIsAsExpected(string sku)
         {
-            var sut = new CheckoutService(_itemPrices);
+            var sut = new CheckoutService(_itemPrices, _itemPromotions);
 
             sut.Add(sku);
 
@@ -48,7 +52,7 @@ namespace Checkout.Tests
         [TestCase("D C B A", ExpectedResult = 120)]
         public decimal AddedManyItems_ThenTotalIsAsExpected(string skuList)
         {
-            var sut = new CheckoutService(_itemPrices);
+            var sut = new CheckoutService(_itemPrices, _itemPromotions);
 
             var skus = skuList.Split(" ");
             foreach (var sku in skus)
