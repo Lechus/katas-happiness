@@ -22,18 +22,7 @@ namespace Checkout
 
         public decimal GetTotal()
         {
-            if (_basketItems[0].Equals("A"))
-            {
-                return _itemPrices.Single(x=>x.Sku == "A").UnitPrice;
-            }
-            else if (_basketItems[0].Equals("C"))
-            {
-                return _itemPrices.Single(x=>x.Sku == "C").UnitPrice;
-            }
-            else
-            {
-                return _itemPrices.Single(x=>x.Sku == "B").UnitPrice;
-            }
+            return _itemPrices.Single(x => x.Sku == _basketItems[0]).UnitPrice;
         }
     }
 }

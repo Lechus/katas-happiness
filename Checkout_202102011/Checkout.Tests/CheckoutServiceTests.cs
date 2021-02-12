@@ -16,7 +16,8 @@ namespace Checkout.Tests
              {
                  new ItemPrice("A", 10m),
                  new ItemPrice("B", 15m),
-                 new ItemPrice("C", 40m)
+                 new ItemPrice("C", 40m),
+                 new ItemPrice("D", 55m)
              };
         }
 
@@ -31,6 +32,7 @@ namespace Checkout.Tests
         [TestCase("A", ExpectedResult = 10)]
         [TestCase("B", ExpectedResult = 15)]
         [TestCase("C", ExpectedResult = 40)]
+        [TestCase("D", ExpectedResult = 55)]
         public decimal AddedSingleItem_ThenTotalIsAsExpected(string sku)
         {
             var sut = new CheckoutService(_itemPrices);
