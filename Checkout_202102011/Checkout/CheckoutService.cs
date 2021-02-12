@@ -25,7 +25,22 @@ namespace Checkout
 
         public decimal GetTotal()
         {
-            return _basketItems.Sum(sku => _itemPrices.Single(x => x.Sku == sku).UnitPrice);
+            var total = 0m;
+            var itemsGroups = _basketItems.GroupBy(x => x);
+
+            foreach (var itemsGroup in itemsGroups)
+            {
+                var numberOfItemsInBasket = itemsGroup.Count();
+                var sku = itemsGroup.Key;
+                var itemUnitPrice = _itemPrices.Single(x => x.Sku == sku).UnitPrice;
+                var itemPromotion =
+                    _itemPromotions.SingleOrDefault(x => x.CanApplyDiscount(sku, numberOfItemsInBasket));
+                var discountAmount = itemPromotion?.CalculateDiscount(numberOfItemsInBasket, itemUnitPrice) ?? 0m;
+
+                total += (numberOfItemsInBasket * itemUnitPrice) - discountAmount;
+            }
+
+            return total;
         }
     }
 }
