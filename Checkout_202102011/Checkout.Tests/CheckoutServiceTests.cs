@@ -41,5 +41,22 @@ namespace Checkout.Tests
 
             return sut.GetTotal();
         }
+
+        [TestCase("A B", ExpectedResult = 25)]
+        [TestCase("B A", ExpectedResult = 25)]
+        [TestCase("C D", ExpectedResult = 95)]
+        [TestCase("D C B A", ExpectedResult = 120)]
+        public decimal AddedManyItems_ThenTotalIsAsExpected(string skuList)
+        {
+            var sut = new CheckoutService(_itemPrices);
+
+            var skus = skuList.Split(" ");
+            foreach (var sku in skus)
+            {
+                sut.Add(sku);
+            }
+
+            return sut.GetTotal();
+        }
     }
 }
