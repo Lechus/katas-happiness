@@ -14,28 +14,15 @@ namespace Checkout.Tests
             Assert.That(sut, Is.Not.Null);
         }
 
-        [Test]
-        public void AddedItemA_ThenTotalIs10()
+        [TestCase("A", ExpectedResult = 10)]
+        [TestCase("B", ExpectedResult = 15)]
+        public decimal AddedItemB_ThenTotalIs15(string sku)
         {
             var sut = new CheckoutService();
 
-            sut.Add("A");
+            sut.Add(sku);
 
-            decimal total = sut.GetTotal();
-
-            Assert.That(total, Is.EqualTo(10m));
-        }
-
-        [Test]
-        public void AddedItemB_ThenTotalIs15()
-        {
-            var sut = new CheckoutService();
-
-            sut.Add("B");
-
-            decimal total = sut.GetTotal();
-
-            Assert.That(total, Is.EqualTo(15m));
+            return sut.GetTotal();
         }
     }
 }
