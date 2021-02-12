@@ -19,5 +19,14 @@
         {
             return (_sku.Equals(sku) && numberOfItems >= _numberOfItems);
         }
+
+        public decimal CalculateDiscount(int numberOfItemsInBasket, decimal unitPrice)
+        {
+            var discountAmount = (_numberOfItems * unitPrice) -_price;
+            int numberOfDiscounts = (numberOfItemsInBasket / _numberOfItems);
+            var totalDiscount = discountAmount * numberOfDiscounts;
+            
+            return totalDiscount;
+        }
     }
 }
