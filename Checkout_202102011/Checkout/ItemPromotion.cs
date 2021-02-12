@@ -1,6 +1,13 @@
 ﻿namespace Checkout
 {
-    public class ItemPromotion
+    public interface IItemPromotion
+    {
+        bool CanApplyDiscount(string sku, int numberOfItems);
+
+        decimal CalculateDiscount(int numberOfItemsInBasket, decimal unitPrice);
+    }
+
+    public class ItemPromotion : IItemPromotion
     {
         private readonly string _sku;
 

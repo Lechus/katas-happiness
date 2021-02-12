@@ -11,7 +11,7 @@ namespace Checkout.Tests
         {
             const string sku = "X";
             const int numberOfItemsForPromotion = 3;
-            var sut = new ItemPromotion(sku, numberOfItemsForPromotion, 20m);
+            IItemPromotion sut = new ItemPromotion(sku, numberOfItemsForPromotion, 20m);
 
             var actual = sut.CanApplyDiscount(sku, numberOfItemsInBasket);
         }
@@ -23,7 +23,7 @@ namespace Checkout.Tests
         {
             const string sku = "X";
             const int numberOfItemsForPromotion = 3;
-            var sut = new ItemPromotion(sku, numberOfItemsForPromotion, 20m);
+            IItemPromotion sut = new ItemPromotion(sku, numberOfItemsForPromotion, 20m);
 
             var actual = sut.CalculateDiscount(numberOfItemsInBasket, 10m);
 
@@ -37,7 +37,7 @@ namespace Checkout.Tests
         {
             const string sku = "X";
             const int numberOfItemsForPromotion = 3;
-            var sut = new ItemPromotion(sku, numberOfItemsForPromotion, 20m);
+            IItemPromotion sut = new ItemPromotion(sku, numberOfItemsForPromotion, 20m);
 
             var actual = sut.CalculateDiscount(numberOfItemsInBasket, 10m);
 
@@ -51,7 +51,7 @@ namespace Checkout.Tests
         {
             const string sku = "X";
             const int numberOfItemsForPromotion = 3;
-            var sut = new ItemPromotion(sku, numberOfItemsForPromotion, 20m);
+            IItemPromotion sut = new ItemPromotion(sku, numberOfItemsForPromotion, 20m);
 
             var actual = sut.CalculateDiscount(numberOfItemsInBasket, 10m);
 
