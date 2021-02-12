@@ -15,5 +15,10 @@ namespace Checkout
         {
             _basketItems.Add(sku);
         }
+
+        public decimal GetTotal()
+        {
+            return 10m;
+        }
     }
 }

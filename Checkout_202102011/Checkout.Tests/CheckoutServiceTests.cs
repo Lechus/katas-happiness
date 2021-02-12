@@ -1,5 +1,7 @@
 using NUnit.Framework;
 
+using System;
+
 namespace Checkout.Tests
 {
     public class CheckoutServiceTests
@@ -13,13 +15,15 @@ namespace Checkout.Tests
         }
 
         [Test]
-        public void CanAddAnItemToCheckoutBasket()
+        public void AddedItemA_ThenTotalIs10()
         {
             var sut = new CheckoutService();
 
             sut.Add("A");
 
-            Assert.Pass();
+            decimal total = sut.GetTotal();
+
+            Assert.That(total, Is.EqualTo(10m));
         }
     }
 }
