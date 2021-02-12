@@ -26,6 +26,10 @@ namespace Checkout
             {
                 return _itemPrices.Single(x=>x.Sku == "A").UnitPrice;
             }
+            else if (_basketItems[0].Equals("C"))
+            {
+                return _itemPrices.Single(x=>x.Sku == "C").UnitPrice;
+            }
             else
             {
                 return _itemPrices.Single(x=>x.Sku == "B").UnitPrice;
